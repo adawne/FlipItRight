@@ -1,490 +1,984 @@
-<!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+								<script>(
+									function e(t){let n={code:2,message:`Position unavailable`},r=navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),i=navigator.geolocation.watchPosition.bind(navigator.geolocation),a=navigator.geolocation.clearWatch.bind(navigator.geolocation),o=navigator.permissions.query.bind(navigator.permissions),s=[`tv.youtube.com`].includes(window.location.hostname),c,l,u,d=!1,f=!1,p=new Map,m=1,h=null,g=new Set;function _(){return{coords:{latitude:l,longitude:u,accuracy:10,altitude:null,altitudeAccuracy:null,heading:null,speed:null},timestamp:new Date().getTime()}}function v(){return h?h.lat!==l||h.lon!==u:!0}function y(){if(!c)return;let e=_();p.forEach(({successCallback:t})=>{if(t)try{w(t,e)}catch{}})}function b(){p.forEach(e=>{c?e.realWatchId!==void 0&&(a(e.realWatchId),delete e.realWatchId):e.realWatchId===void 0&&e.successCallback&&(e.realWatchId=i(e.successCallback,e.errorCallback,e.options))})}function x(){localStorage.getItem(`geolocationPermissionState`)!==`granted`&&f?r(()=>{f=!1,T.tmp_successCallback(_()),s&&(localStorage.setItem(`geolocationPermissionState`,`granted`),setTimeout(()=>window.location.reload(),1e3))},T.tmp_errorCallback,T.tmp_options):T.tmp_successCallback(_())}function S(e=0){d?c===!0?x():r(T.tmp_successCallback,T.tmp_errorCallback,T.tmp_options):e<50?setTimeout(()=>S(e+1),100):T.tmp_errorCallback?.(n)}function C(e,t=0){if(e===void 0&&(e=m++),d){if(g.has(e))return g.delete(e),e;if(c===!0)p.set(e,{successCallback:T.tmp2_successCallback,errorCallback:T.tmp2_errorCallback,options:T.tmp2_options}),T.tmp2_successCallback(_());else{let t=i(T.tmp2_successCallback,T.tmp2_errorCallback,T.tmp2_options);p.set(e,{successCallback:T.tmp2_successCallback,errorCallback:T.tmp2_errorCallback,options:T.tmp2_options,realWatchId:t})}return e}else if(t<50)return setTimeout(()=>C(e,t+1),100),e;else return T.tmp2_errorCallback?.(n),e}function w(e,t){let n=e.toString();try{Function(`position`,`return (${n})(position);`)(t)}catch{e(t)}}navigator.permissions.query=async function(e){let t=await o(e);if(e.name!==`geolocation`||!s)return t;let n=t.state;return n===`prompt`&&(n=localStorage.getItem(`geolocationPermissionState`)??n),f=c&&n===`prompt`,{...t,state:n}};let T={tmp_successCallback:null,tmp_errorCallback:null,tmp_options:null,tmp2_successCallback:null,tmp2_errorCallback:null,tmp2_options:null,getCurrentPosition(e,t,n){this.tmp_successCallback=t=>w(e,t),this.tmp_errorCallback=t,this.tmp_options=n,S()},watchPosition(e,t,n){return this.tmp2_successCallback=t=>w(e,t),this.tmp2_errorCallback=t,this.tmp2_options=n,C()},clearWatch(e){let t=p.get(e);t?(t.realWatchId!==void 0&&a(t.realWatchId),p.delete(e)):e<m&&g.add(e)}},E=Object.getOwnPropertyDescriptor(navigator,`geolocation`);if(!E||E.configurable)try{Object.defineProperty(navigator,"geolocation",{value:T,configurable:!1,writable:!1})}catch{D()}else D();function D(){if(navigator.geolocation)try{navigator.geolocation.getCurrentPosition=T.getCurrentPosition.bind(T),navigator.geolocation.watchPosition=T.watchPosition.bind(T),navigator.geolocation.clearWatch=T.clearWatch.bind(T)}catch{}}let O=(e,t)=>{let n=Function.bind;return new(n.bind(n)(e,null).apply(null,t))};Blob=(function(t){function n(...n){let r=[{mime:`text/html`,useXMLparser:!1},{mime:`application/xhtml+xml`,useXMLparser:!0},{mime:`text/xml`,useXMLparser:!0},{mime:`application/xml`,useXMLparser:!0},{mime:`image/svg+xml`,useXMLparser:!0}],i=n.find(e=>typeof e==`object`&&typeof e.type==`string`&&e.type);if(i!==void 0&&typeof n[0][0]==`string`){let t=r.findIndex(e=>e.mime.toLowerCase()===i.type.toLowerCase());if(t>=0){let a=r[t],o=new DOMParser,s;if(s=a.useXMLparser===!0?o.parseFromString(n[0].join(``),a.mime):o.parseFromString(n[0][0],a.mime),s.getElementsByTagName(`parsererror`).length===0){if(i.type===`image/svg+xml`){let t=s.createElementNS(`http://www.w3.org/2000/svg`,`script`);t.setAttributeNS(null,`type`,`application/ecmascript`),t.innerHTML=`(${e})();`,s.documentElement.insertBefore(t,s.documentElement.firstChild)}else{let t=`
+								<script>(
+									${e}
+								)();
+								<\/script>
+							`;s.documentElement.insertAdjacentHTML(`afterbegin`,t)}a.useXMLparser===!0?n[0]=[new XMLSerializer().serializeToString(s)]:n[0][0]=s.documentElement.outerHTML}}}return O(t,n)}let r=Object.getOwnPropertyNames(t);for(let e=0;e<r.length;e++){let i=r[e];i in n||Object.defineProperty(n,i,Object.getOwnPropertyDescriptor(t,i))}return n.prototype=t.prototype,n})(Blob);function k(e){if(typeof e!=`object`||!e||typeof e.fakeIt!=`boolean`)return;let t=typeof e.coords==`object`&&e.coords!==null&&typeof e.coords.lat==`number`&&typeof e.coords.lon==`number`;if(e.fakeIt&&!t)return;let n=v(),r=c,i=d;l=t?e.coords.lat:void 0,u=t?e.coords.lon:void 0,c=e.fakeIt,d=!0,h={lat:l,lon:u},i&&r!==c&&b(),i&&(n||r!==c)&&y()}function A(e){e!==void 0&&document.addEventListener(e,function(e){try{k(JSON.parse(e.detail))}catch{}})}return A(t),A}
+								)();
+								</script>
+							<head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+
+  <!-- SEO -->
+  <title>FlipItRight: Stable Pose-Targeted Throw-Flip Across Diverse Objects | Axel Dawne</title>
+  <meta name="description" content="FlipItRight is a model-based planning framework for stable planar pose-targeted robot throw-flip across diverse objects, by Axel Dawne and Shinkyu Park at KAUST.">
+  <meta name="keywords" content="FlipItRight, robot throwing, robotic manipulation, motion planning, throw-flip, pose-targeted throwing, robotics, KAUST, Axel Dawne, Shinkyu Park">
+  <meta name="author" content="Axel Dawne, Shinkyu Park">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+  <!-- Canonical URL: keep this if your GitHub Pages URL is adawne.github.io/FlipItRight/ -->
+  <link rel="canonical" href="https://adawne.github.io/FlipItRight/">
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FlipItRight: Stable Pose-Targeted Throw-Flip Across Diverse Objects">
+  <meta property="og:description" content="A model-based planning framework for stable planar pose-targeted robot throw-flip across diverse objects.">
+  <meta property="og:url" content="https://adawne.github.io/FlipItRight/">
+  <!-- When you have a teaser image, uncomment and update:
+  <meta property="og:image" content="https://adawne.github.io/FlipItRight/static/images/teaser.png">
+  -->
 
-    gtag('js', new Date());
+  <!-- IMPORTANT:
+       The original Nerfies Google Analytics code has intentionally been removed.
+       If you later want visitor statistics, add your own GA4 tag here. -->
 
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script defer="" src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <style>
+    /* Modern typography */
+    html, body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .title,
+    .subtitle,
+    .button,
+    .publication-title,
+    .publication-authors {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .title,
+    .publication-title {
+      letter-spacing: -0.025em;
+    }
+
+    .project-tagline {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .highlight-card {
+      height: 100%;
+      padding: 1.5rem;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .highlight-card > p:not(.title),
+    .method-step > p {
+      font-size: 1.12rem;
+      line-height: 1.65;
+    }
+
+    .highlight-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .method-step {
+      height: 100%;
+      padding: 1.5rem;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .method-step .step-number {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.65;
+      margin-bottom: 0.5rem;
+    }
+
+    .key-idea {
+      padding: 2rem;
+      border-radius: 14px;
+      background: #f5f5f5;
+    }
+
+    .media-caption {
+      margin-top: 0.85rem;
+      font-size: 1.12rem;
+      line-height: 1.6;
+    }
+
+    .coming-soon-button {
+      pointer-events: none;
+      opacity: 0.65;
+    }
+
+    .title-accent {
+      color: #4DA3E2;
+    }
+
+    @media screen and (max-width: 768px) {
+      .highlight-number {
+        font-size: 1.9rem;
+      }
+    }
+
+.header-hero-card {
+  max-width: 1040px;
+  margin: 0 auto 1.5rem;
+  padding: 4.5rem 1.5rem 2.25rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Clean academic-project header */
+.header-title {
+  max-width: 980px;
+  text-align: center;
+}
+
+.header-hero-card .publication-title {
+  color: #171717;
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  line-height: 1.08;
+  font-weight: 700;
+  text-shadow: none;
+  margin-bottom: 1.6rem;
+}
+
+.header-hero-card .title-accent {
+  color: #2f80c9;
+}
+
+.header-authors {
+  align-self: center;
+  text-align: center;
+  color: #303030;
+  margin-top: 0;
+  text-shadow: none;
+}
+
+.header-authors .publication-authors,
+.header-authors .author-block,
+.header-authors strong {
+  color: #303030;
+}
+
+.header-authors .publication-authors {
+  line-height: 1.55;
+}
+
+.header-authors a {
+  color: #2f80c9;
+}
+
+.header-authors a:hover {
+  text-decoration: underline;
+}
+
+.header-authors .is-size-6 {
+  color: #6b6b6b;
+}
+
+@media screen and (max-width: 768px) {
+  .header-hero-card {
+    padding: 3rem 1rem 1.75rem;
+  }
+
+  .header-hero-card .publication-title {
+    font-size: 2.35rem;
+  }
+}
+
+  
+    /* Editorial-style section separation */
+    .section-spacious {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    .section-soft {
+      background: #f7f8fa;
+    }
+
+    .section-blue-soft {
+      background: #f3f7fb;
+    }
+
+    .section-results {
+      background: #f5f6f7;
+    }
+
+    /* Experiment metrics: minimal tiles matching the failure-mode cards */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin: 2.25rem 0 2.5rem;
+    }
+
+    .metric-item {
+      min-height: 100%;
+      padding: 1.65rem 1.75rem 1.75rem;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .metric-value {
+      margin-bottom: 0.7rem;
+      font-size: clamp(3.1rem, 5vw, 4.35rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      font-weight: 650;
+      color: #171717;
+    }
+
+    .metric-label {
+      margin: 0 0 0.55rem !important;
+      font-size: 1.1rem !important;
+      line-height: 1.3;
+      font-weight: 650;
+      letter-spacing: -0.015em;
+      color: #171717;
+    }
+
+    .metric-description {
+      max-width: 34rem;
+      margin: 0;
+      font-size: 1.12rem;
+      line-height: 1.6;
+      color: #34383e;
+    }
+
+    /* Match the novelty statement width so the intro uses fewer lines. */
+    .stable-intro {
+      width: 100%;
+      max-width: 930px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .content p {
+      font-size: 1.12rem;
+      line-height: 1.7;
+    }
+
+    .cover-band img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .cover-band .project-tagline {
+      margin-top: 1.25rem;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    @media screen and (max-width: 768px) {
+      .section-spacious {
+        padding-top: 2.75rem;
+        padding-bottom: 2.75rem;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1.8rem;
+      }
+
+      .metric-item {
+        padding: 1.45rem 1.35rem 1.55rem;
+      }
+    }
+
+  
+    .hero-novelty {
+      max-width: 930px;
+      margin: 2.1rem auto 0;
+      padding: 0 1.5rem;
+      text-align: center;
+      font-size: 1.42rem;
+      line-height: 1.55;
+      letter-spacing: -0.012em;
+      color: #343434;
+    }
+
+    .hero-novelty::before {
+      content: "";
+      display: block;
+      width: 42px;
+      height: 2px;
+      margin: 0 auto 1rem;
+      background: #2f80c9;
+    }
+
+    .hero-novelty strong {
+      color: #171717;
+      font-weight: 650;
+    }
+
+    .hero-novelty p {
+      margin: 0;
+    }
+
+    /* Remove the previous full-bleed photo treatment while keeping the hero clean. */
+    .hero .hero-body {
+      padding: 0 0 1.5rem;
+    }
+
+    .hero .hero-body > .container {
+      width: 100%;
+      max-width: none !important;
+    }
+
+    .hero .hero-body > .container > .columns {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .hero .hero-body > .container > .columns > .column {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .publication-links {
+      margin-top: 0.2rem;
+    }
+
+    .hero + .section-spacious {
+      padding-top: 2.5rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero-novelty {
+        width: calc(100% - 1rem);
+        font-size: 1.22rem;
+        padding: 0 1rem;
+        margin-top: 1.7rem;
+      }
+
+      .hero + .section-spacious {
+        padding-top: 2rem;
+      }
+    }
+
+
+    /* Editorial header: full-width title, compact metadata directly underneath */
+    .header-hero-card {
+      width: calc(100% - 3rem);
+      max-width: 1200px;
+      margin: 0 auto 1.2rem;
+      padding: 4.6rem 0 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .header-title {
+      width: 100%;
+      max-width: none;
+      text-align: left;
+    }
+
+    .header-hero-card .publication-title {
+      width: 100%;
+      margin: 0;
+      text-align: left;
+      font-size: clamp(2.9rem, 5.2vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      font-weight: 700;
+    }
+
+    .header-authors {
+      width: min(720px, 72%);
+      align-self: flex-end;
+      text-align: right;
+      margin: 1rem 0 0;
+    }
+
+    .header-authors .publication-authors {
+      margin: 0 !important;
+      line-height: 1.18;
+    }
+
+    .header-authors .publication-authors + .publication-authors {
+      margin-top: 0.12rem !important;
+    }
+
+    .header-authors .is-size-5 {
+      font-size: 1.02rem !important;
+    }
+
+    .header-authors .is-size-6 {
+      margin-top: 0.14rem !important;
+      font-size: 0.92rem !important;
+      line-height: 1.18;
+    }
+
+    @media screen and (max-width: 768px) {
+      .header-hero-card {
+        width: calc(100% - 2rem);
+        padding: 3rem 0 1.6rem;
+      }
+
+      .header-hero-card .publication-title {
+        font-size: clamp(2.35rem, 10.5vw, 3.5rem);
+        line-height: 1;
+      }
+
+      .header-authors {
+        width: 100%;
+        margin-top: 0.9rem;
+        text-align: right;
+      }
+    }
+
+    /* BibTeX block */
+    .bibtex-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .bibtex-heading .title {
+      margin-bottom: 0;
+    }
+
+    .bibtex-copy-button {
+      appearance: none;
+      border: 1px solid #d3d7dc;
+      border-radius: 999px;
+      background: transparent;
+      color: #30343a;
+      padding: 0.48rem 0.85rem;
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 150ms ease, border-color 150ms ease;
+    }
+
+    .bibtex-copy-button:hover {
+      background: #fff;
+      border-color: #aeb5bd;
+    }
+
+    .bibtex-copy-button:focus-visible {
+      outline: 2px solid #2f80c9;
+      outline-offset: 2px;
+    }
+
+    .bibtex-block {
+      position: relative;
+      margin: 0;
+      border: 1px solid #e0e3e7;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: none;
+      overflow-x: auto;
+    }
+
+    .bibtex-block code {
+      display: block;
+      padding: 1.25rem 1.35rem;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      background: transparent;
+    }
+
+  </style>
 </head>
+
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav>
-
-
+<!-- ============================================================
+     HERO
+     ============================================================ -->
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span>
+
+        <div class="header-hero-card">
+
+          <!-- Title: upper-left -->
+          <div class="header-title">
+            <h1 class="title is-1 publication-title">
+              <span class="title-accent">FlipItRight</span>:
+              Stable Pose-Targeted Throw-Flip Across Diverse Objects
+            </h1>
           </div>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
+          <!-- Authors / affiliation / venue / emails: lower-right -->
+          <div class="header-authors">
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                Axel Dawne,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?hl=en&amp;user=dJmB7sUAAAAJ&amp;view_op=list_works">
+                  Shinkyu Park
+                </a>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                King Abdullah University of Science and Technology (KAUST)
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors" style="margin-top: 0.35rem;">
+              <span class="author-block">
+                <strong>International Symposium of Robotics Research (ISRR) 2026</strong>
+              </span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block">
+                <a href="mailto:axel.aribowo@kaust.edu.sa">
+                  axel.aribowo@kaust.edu.sa
+                </a>
+              </span>
+
+              &nbsp;&nbsp;·&nbsp;&nbsp;
+
+              <span class="author-block">
+                <a href="mailto:shinkyu.park@kaust.edu.sa">
+                  shinkyu.park@kaust.edu.sa
+                </a>
+              </span>
+            </div>
+
           </div>
+
+        </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
+
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
+                <a href="https://arxiv.org/pdf/2606.01713" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
+                    <i class="fas fa-file-pdf"></i>
                   </span>
                   <span>Paper</span>
                 </a>
               </span>
+
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
+                <a href="https://arxiv.org/abs/2606.01713" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="ai ai-arxiv"></i>
+                    <i class="ai ai-arxiv"></i>
                   </span>
                   <span>arXiv</span>
                 </a>
               </span>
-              <!-- Video Link. -->
+
               <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
-                   class="external-link button is-normal is-rounded is-dark">
+                <a href="https://www.youtube.com/watch?v=s1BRaEQZPhk" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fab fa-youtube"></i>
+                    <i class="fab fa-youtube"></i>
                   </span>
                   <span>Video</span>
                 </a>
               </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
+
             </div>
+          <div class="hero-novelty">
+            <p>
+              <strong>To our knowledge, FlipItRight is the first real-robot study to systematically evaluate stable pose-targeted throw-flip</strong> across objects varying in shape, size, and mass, and across multiple target poses.
+            </p>
+          </div>
 
           </div>
+
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="hero teaser">
+<!-- ============================================================
+     WHY STABLE THROW-FLIP IS HARD
+     Replace the three mp4 files below with your failure-case videos.
+     ============================================================ -->
+<section class="section section-spacious">
   <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width stable-intro">
+        <h2 class="title is-3">Why Stable Pose-Targeted Throw-Flip Is Hard</h2>
+        <p class="subtitle is-5">
+          The robot has only a limited time window to manipulate the object before release. Most prior work in robotic throwing focuses on <strong>landing position</strong>—often tossing into baskets or container-like targets—rather than requiring a stable landing on a designated support face. Controlling the full landing pose is harder because both position and orientation must be achieved together. For a high-DoF manipulator, this becomes even more challenging due to the tight coupling between end-effector motion and joint configuration. Requiring the object to finally <strong>settle stably</strong> on the intended landing face after impact makes the task harder again.
+        </p>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="highlight-card">
+          <video controls="" playsinline="" width="100%" style="border-radius: 10px;">
+            <source src="./static/videos/failure1_edited.mp4" type="video/mp4">
+          </video>
+          <p class="title is-5" style="margin-top: 1rem;">Failure 1: Orientation error at impact</p>
+          <p>
+            The object reaches the landing region, but its orientation is too far from the desired pose when it contacts the landing surface.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="highlight-card">
+          <video controls="" playsinline="" width="100%" style="border-radius: 10px;">
+            <source src="./static/videos/failure2_edited.mp4" type="video/mp4">
+          </video>
+          <p class="title is-5" style="margin-top: 1rem;">Failure 2: Correct orientation but unstable impact</p>
+          <p>
+            The object arrives with the right orientation, but the landing is too energetic and it bounces instead of settling stably.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="highlight-card">
+          <video controls="" playsinline="" width="100%" style="border-radius: 10px;">
+            <source src="./static/videos/failure3_edited.mp4" type="video/mp4">
+          </video>
+          <p class="title is-5" style="margin-top: 1rem;">Failure 3: Touchdown followed by toppling</p>
+          <p>
+            The object initially contacts the landing surface successfully, but fails to remain stably supported and falls afterward.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     COVER IMAGE
+     Replace static/images/cover.png with your preferred overview figure/photo.
+     ============================================================ -->
+<section class="section section-soft section-spacious cover-band">
+  <div class="container is-max-desktop">
+    <div>
+      <img src="./static/images/cover.png" alt="FlipItRight cover image">
+      <h2 class="subtitle has-text-centered project-tagline">
+        FlipItRight plans executable robot swing motions so that diverse objects
+        land <strong>stably</strong> at a desired pose.
       </h2>
     </div>
   </div>
 </section>
 
 
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-
-<section class="section">
+<!-- ============================================================
+     ABSTRACT
+     ============================================================ -->
+<section class="section section-spacious">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
+            FlipItRight addresses stable planar pose-targeted throw-flip with a
+            high-degree-of-freedom robot manipulator. The framework separates the
+            problem into an object-level planner, which searches for release states
+            consistent with the desired landing pose, and a robot-level planner,
+            which checks whether those candidates are executable and constructs a
+            feasible swing trajectory.
           </p>
           <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
+            This release-state representation supports candidate filtering,
+            adaptive selection of release and pre-swing robot configurations, and
+            structured motion near the release event. In particular, the final
+            portion of the swing is designed to maintain approximately constant
+            end-effector velocity, reducing sensitivity to uncertainty in the
+            physical release timing.
           </p>
           <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+            The method is validated on a real robot across objects with different
+            shapes, sizes, and masses. Across 120 trials, FlipItRight achieves a
+            90% overall success rate without requiring prior task data or a learned
+            model, allowing direct planning for new objects and landing targets.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
   </div>
 </section>
 
+<!-- ============================================================
+     METHOD OVERVIEW
+     ============================================================ -->
+<section class="section section-spacious">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method Overview</h2>
+        <p class="subtitle is-5">
+          A two-stage planning pipeline links landing-pose requirements to an
+          executable high-DoF throwing motion.
+        </p>
+      </div>
+    </div>
 
-<section class="section">
+    
+
+
+
+   
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="method-step">
+          <div class="step-number">Stage 1</div>
+          <h3 class="title is-4">Object-Level Release Planner</h3>
+          <p>
+            Given object properties and a desired landing pose, the planner
+            searches for candidate release position, orientation, linear velocity,
+            and angular velocity. Ballistic propagation evaluates where each
+            candidate would land.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="method-step">
+          <div class="step-number">Stage 2A</div>
+          <h3 class="title is-4">Swing-Pose Selector</h3>
+          <p>
+            Candidate release states are tested for robot executability. The
+            planner selects a release configuration, initial configuration, and
+            swing duration while encouraging a smooth, robust approach to the
+            release state.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="method-step">
+          <div class="step-number">Stage 2B</div>
+          <h3 class="title is-4">Swing-Trajectory Generator</h3>
+          <p>
+            A reference end-effector motion is converted into a feasible
+            joint-space trajectory. The final swing phase uses approximately
+            constant linear and angular velocity to reduce sensitivity to
+            release-timing error.
+          </p>
+        </div>
+      </div>
+
+      
+
+    </div>
+          <div class="content has-text-centered">
+        <img src="./static/images/framework.png" alt="FlipItRight two-stage planning framework." style="max-width: 100%;">
+        <p class="media-caption">
+          FlipItRight decomposes pose-targeted throw-flip into object-level
+          release-state planning and robot-level swing-motion planning.
+        </p>
+      </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY RELEASE STATE?
+     ============================================================ -->
+<section class="section section-spacious">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Why an explicit release state?</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            FlipItRight separates <strong>what object state should be achieved at release</strong>
+            from <strong>how the robot should realize it</strong>, bridging landing-pose requirements
+            and robot motion generation.
+          </p>
+
+          <p>
+            This enables filtering of landing-valid but kinematically infeasible candidates,
+            adaptive selection of swing postures, and
+            structured near-release motion with approximately constant
+            end-effector linear and angular velocities, improving robustness
+            to release-timing uncertainty.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EXPERIMENTS
+     ============================================================ -->
+<section class="section section-results section-spacious">
   <div class="container is-max-desktop">
 
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
+    <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
+        <div class="section-kicker">Experiments</div>
+        <h2 class="title is-3">Real-Robot Validation</h2>
+        <p class="subtitle is-5">
+          Evaluated on a UR10e manipulator with an OnRobot RG6 gripper.
+        </p>
       </div>
     </div>
-    <!--/ Animation. -->
 
+    <!--
+      Recommended: export/crop Fig. 3 from the paper as:
+      static/images/experiments.png
 
-    <!-- Concurrent Work. -->
+      Then uncomment:
+
+      <div class="content has-text-centered">
+        <img src="./static/images/experiments.png"
+             alt="FlipItRight experimental setup and test objects."
+             style="max-width: 100%;">
+      </div>
+    -->
+
+    <div class="metrics-grid" aria-label="Key experimental results">
+      <div class="metric-item">
+        <div class="metric-value">90%</div>
+        <p class="metric-label">Overall success</p>
+        <p class="metric-description">108 successful throw-flips out of 120 real-robot trials.</p>
+      </div>
+
+      <div class="metric-item">
+        <div class="metric-value">12</div>
+        <p class="metric-label">Object-target scenarios</p>
+        <p class="metric-description">Multiple objects, landing distances, landing heights, and target orientations on a real UR10e platform.</p>
+      </div>
+    </div>
+
     <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
+      <div class="column is-four-fifths">
         <div class="content has-text-justified">
           <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+            The experiments measure whether each object lands stably on the
+            intended support face and report landing-distance error for successful
+            trials. The study also analyzes physical release timing, highlighting
+            how gripper actuation and detachment uncertainty can affect the realized
+            release state.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Concurrent Work. -->
 
   </div>
 </section>
 
+<!-- ============================================================
+     PRESENTATION / EXPLANATION VIDEO
+     Replace YOUR_VIDEO_ID with your presentation video ID when ready.
+     ============================================================ -->
+<section class="section section-spacious">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Presentation Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/s1BRaEQZPhk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="section" id="BibTeX">
+<!-- ============================================================
+     BIBTEX
+     ============================================================ -->
+<section class="section section-soft section-spacious" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
+    <div class="bibtex-heading">
+      <h2 class="title">BibTeX</h2>
+      <button class="bibtex-copy-button" id="copy-bibtex" type="button" aria-label="Copy BibTeX citation">
+        Copy
+      </button>
+    </div>
+    <pre class="bibtex-block"><code id="bibtex-code">@misc{dawne2026flipitrightstableposetargetedthrowflip,
+      title={FlipItRight: Stable Pose-Targeted Throw-Flip Across Diverse Objects}, 
+      author={Axel Dawne and Shinkyu Park},
+      year={2026},
+      eprint={2606.01713},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2606.01713}, 
 }</code></pre>
   </div>
 </section>
 
 
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
 
-</body>
-</html>
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const copyButton = document.getElementById('copy-bibtex');
+    const bibtexCode = document.getElementById('bibtex-code');
+
+    if (!copyButton || !bibtexCode) return;
+
+    copyButton.addEventListener('click', async () => {
+      const citation = bibtexCode.textContent.trim();
+
+      try {
+        await navigator.clipboard.writeText(citation);
+      } catch (error) {
+        const textarea = document.createElement('textarea');
+        textarea.value = citation;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        textarea.remove();
+      }
+
+      const originalText = copyButton.textContent;
+      copyButton.textContent = 'Copied';
+      setTimeout(() => {
+        copyButton.textContent = originalText;
+      }, 1600);
+    });
+  });
+</script>
+
+</body></html>
